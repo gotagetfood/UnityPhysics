@@ -39,10 +39,13 @@ public class RigidbodyCharacter : MonoBehaviour
 		// movement
 		direction = Vector3.zero;
 		direction.z = Input.GetAxis("Vertical");
-		direction.x = Input.GetAxis("Horizontal");
+
+		rotate = Vector3.zero;
+		rotate.y = Input.GetAxis("Horizontal");
+
 
 		//rotate = Vector3.zero;
-		rotate.y = Input.GetAxis("Horizontal");
+		//rotate.y = Input.GetAxis("Horizontal");
 
 
 		// jump
@@ -57,12 +60,12 @@ public class RigidbodyCharacter : MonoBehaviour
 		if (isRelative)
 		{
 			rb.AddRelativeForce(direction * speed, ForceMode.Force);
-			//rb.AddRelativeTorque(rotate * turnRate);
+			rb.AddRelativeTorque(rotate * turnRate);
 		}
 		else
 		{
             rb.AddForce(direction * speed, ForceMode.Force);
-            //rb.AddTorque(rotate * turnRate);
+            rb.AddTorque(rotate * turnRate);
         }
 	}
 }
